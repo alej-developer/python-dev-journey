@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Día 01 — Calculadora de IMC
 
 ## ¿Qué hace este programa?
@@ -28,3 +29,19 @@ Categoría: Peso normal
 ## Desarrollado con ayuda de IA
 Código revisado y explicado con Claude (Anthropic) como tutor.
 La IA ayuda a entender conceptos y validar buenas prácticas.
+=======
+# python-dev-journey
+>>>>>>> 46f35106e158da3b08239830d621a2c8ee0992dc
+
+## v2 - Manejo de Errores (Día 2)
+
+***Archivo:** `imc_calculator_v2.py`
+
+**Nuevos Conceptos:**
+- `try / except / else / finally` para capturar errores
+- `ValueError` y `KeyboardInterrupt`
+- Bucle `while True` con `continue` y `return`
+- Tuplas para devolver múltiples valores
+
+**Prueba a introducir texto en vez de número - ya no explota.**
+
