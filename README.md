@@ -45,3 +45,15 @@ La IA ayuda a entender conceptos y validar buenas prácticas.
 
 **Prueba a introducir texto en vez de número - ya no explota.**
 
+## v3 — Estructuras de datos (Día 3)
+
+**Archivo:** `registro_pacientes.py`
+
+**Nuevos conceptos:**
+- `list` y `dict`: las dos estructuras más usadas en Python
+- Bucle `for` con `.items()` y `enumerate()`
+- `sorted()` con `key=lambda`
+- List comprehension: `[x for x in lista]`
+- Menú interactivo con `while` + `break`
+
+**Prueba a añadir 3 pacientes y ver el resumen con el ranking.**
