@@ -99,6 +99,58 @@ def buscar_contacto(termino: str) -> list:
         if termino in c["nombre"].lower()
         or termino in c["email"].lower()
     ]
+
+def eliminar_contacto() -> None:
+    """
+    Elimina un contacto por su posición en la lista.
+
+    del lista[indice] elimina el elemento en esa posición.
+    Restamos 1 al índice porque el usuario ve números desde 1
+    pero Python indexa desde 0.
+    """
+    listar_contactos()
+    if not contactos:
+        return
+
+    try:
+        numero = int(input("\nNúmero del contacto a eliminar (0 para cancelar): "))
+        if numero == 0:
+            return
+        if 1 <= numero <= len(contactos):
+            # Ordenamos igual que en listar para que el índice coincida
+            ordenados = sorted(contactos, key=lambda c: c["nombre"])
+            eliminado = ordenados[numero - 1]
+            contactos.remove(eliminado)     # .remove() busca y elimina el objeto
+            print(f"\n  '{eliminado['nombre']}' eliminado.")
+        else:
+            print("  Número fuera de rango.")
+    except ValueError:
+        print("  Escribe un número válido.")
+
+
+def mostrar_por_grupos() -> None:
+    """
+    Agrupa los contactos por su campo 'grupo' usando un diccionario.
+
+    Construimos un dict donde cada clave es un grupo y su valor
+    es una lista de contactos — dict de listas, patrón muy común.
+    """
+    if not contactos:
+        print("\n  No hay contactos.")
+        return
+
+    grupos: dict = {}
+    for contacto in contactos:
+        grupo = contacto["grupo"]
+        if grupo not in grupos:
+            grupos[grupo] = []          # Creamos la lista si no existe
+        grupos[grupo].append(contacto)
+
+    print("\n--- Contactos por grupo ---")
+    for grupo, miembros in sorted(grupos.items()):
+        print(f"\n  [{grupo}] — {len(miembros)} contacto(s)")
+        for c in miembros:
+            print(f"    - {c['nombre']} · {c['telefono']}")
         
 def main():
     print("=" * 40)
@@ -110,9 +162,10 @@ def main():
         print("  1. Añadir contacto")
         print("  2. Ver todos")
         print("  3. Buscar")
-        print("  4. Salir")
-
-        opcion = input("\nOpción (1-4): ").strip()
+        print("  4. Ver por grupos")    # ← nueva
+        print("  5. Eliminar")          # ← nueva
+        print("  6. Salir")             # ← era 4
+        opcion = input("\nOpción (1-6): ").strip()
 
         if opcion == "1":
             agregar_contacto()
@@ -132,6 +185,12 @@ def main():
                     print("  No se encontraron contactos.")
 
         elif opcion == "4":
+            mostrar_por_grupos()
+
+        elif opcion == "5":
+            eliminar_contacto()
+
+        elif opcion == "6":
             print("\nHasta luego.")
             break
 
